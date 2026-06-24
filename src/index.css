@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* Custom utility styles and classes for the Romantic Web App */
+
+@layer utilities {
+  .font-hand {
+    font-family: 'Patrick Hand', cursive, sans-serif;
+  }
+  
+  .font-caveat {
+    font-family: 'Caveat', cursive, sans-serif;
+  }
+}
+
+/* Custom Keyframes & Animations */
+@keyframes heartFloat {
+  0% {
+    transform: translateY(100vh) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-20vh) scale(1) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-heart {
+  animation: heartFloat 8s ease-in infinite;
+}
+
+.animate-sway {
+  animation: sway 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Polaroid Photo Effect */
+.polaroid {
+  background: white;
+  padding: 12px;
+  padding-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 12px 32px rgba(225, 29, 72, 0.15);
+  z-index: 10;
+}
+
+/* Custom Envelope Letter Animations */
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 380px;
+  background-color: #fca5a5; /* rose-300 */
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  cursor: pointer;
+  overflow: visible;
+  transition: transform 0.4s ease;
+}
+
+.envelope-wrapper:hover {
+  transform: translateY(-4px);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 250px solid transparent;
+  border-right: 250px solid transparent;
+  border-top: 190px solid #f87171; /* rose-400 */
+  border-radius: 12px 12px 0 0;
+  transform-origin: top;
+  transition: transform 0.4s ease, z-index 0.2s;
+  z-index: 3;
+}
+
+.envelope-wrapper.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fca5a5; /* rose-300 */
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Left & Right Flaps */
+.envelope-pocket::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 250px solid #f87171; /* rose-400 */
+  border-top: 190px solid transparent;
+  border-bottom: 190px solid #f87171; /* rose-400 */
+  border-radius: 0 0 0 12px;
+  z-index: 2;
+}
+
+.envelope-pocket::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-right: 250px solid #f87171; /* rose-400 */
+  border-top: 190px solid transparent;
+  border-bottom: 190px solid #f87171; /* rose-400 */
+  border-radius: 0 0 12px 0;
+  z-index: 2;
+}
+
+.letter-sheet {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 20px);
+  background-color: #fffbeb; /* amber-50 */
+  border-radius: 8px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+  padding: 24px;
+  box-sizing: border-box;
+  transition: transform 0.5s ease 0.2s, z-index 0.1s ease 0.2s;
+  z-index: 1;
+}
+
+.envelope-wrapper.open .letter-sheet {
+  transform: translateY(-160px);
+  z-index: 4;
+}
+
+/* Custom Scrollbar for Letter */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #fecdd3;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #fda4af;
+}
