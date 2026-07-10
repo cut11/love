@@ -1,18 +1,7 @@
 import { useState, useEffect } from 'react'
 import circleImg from './assets/6101592217eb71ba8acdb1cbe2b211f2.jpg'
 import successCircleImg from './assets/ebcd957822ce842a267c633ad3735cd3.jpg'
-import polaroid1 from './assets/670757078_1894632771225724_3710514420209305596_n.jpg'
-import polaroid2 from './assets/714263139_2481927372318285_8578218927967916880_n.jpg'
-import polaroid3 from './assets/725985132_1360663529334907_780795565533355128_n.jpg'
-import polaroid4 from './assets/727641471_1705822861068719_8728813883622621990_n.jpg'
-import polaroid5 from './assets/727952657_2076586783206398_2835468116678165344_n_.jfif'
-import polaroid6 from './assets/728636965_1035895832145644_6901370503664015108_n_.jfif'
-import polaroid7 from './assets/546477464_806603311722089_7976159153524287789_n.jpg'
-import polaroid8 from './assets/634252620_743896422134716_4291340751596335457_n.jpg'
-import polaroid9 from './assets/655109793_1314079007209925_2049625266480585482_n.jpg'
-import polaroid10 from './assets/496624501_700696742696447_7223548349436338214_n.jpg'
-import polaroid11 from './assets/507066558_1647128759292232_2547013144561368196_n.jpg'
-import polaroid12 from './assets/514111613_2984061138435500_4501461658049484253_n.jpg'
+
 import localVideo from './assets/Download.mp4'
 
 interface Heart {
@@ -97,18 +86,18 @@ function App() {
 
   // Polaroid memories details utilizing the user's uploaded images
   const polaroids: PolaroidData[] = [
-    { id: 1, img: polaroid1, caption: "meshoo with my soulmate 🐈‍⬛💕", rotation: "-rotate-3" },
-    { id: 2, img: polaroid2, caption: "my love in paris 🗼", rotation: "rotate-2" },
-    { id: 3, img: polaroid3, caption: "always love u babe ❤️  ", rotation: "-rotate-2" },
-    { id: 4, img: polaroid4, caption: "best nails ever 💅🏻 ", rotation: "rotate-3" },
-    { id: 5, img: polaroid5, caption: "best lips ever 💋❤️", rotation: "-rotate-1" },
-    { id: 6, img: polaroid6, caption: "this eye make me fall in love all over again 💕", rotation: "rotate-1" },
-    { id: 7, img: polaroid7, caption: "bigist biceps i ever seen 💪", rotation: "-rotate-2" },
-    { id: 8, img: polaroid8, caption: "Best cookies for sure 😋  ", rotation: "rotate-2" },
-    { id: 9, img: polaroid9, caption: " i love red from this moment ✨", rotation: "-rotate-3" },
-    { id: 10, img: polaroid10, caption: "I Love this dress so much ❤️", rotation: "rotate-1" },
-    { id: 11, img: polaroid11, caption: "Tizak hamra ❤️‍🔥💗❤️💋  ", rotation: "-rotate-2" },
-    { id: 12, img: polaroid12, caption: "My True love ❤️", rotation: "rotate-3" }
+    { id: 1, img: "", caption: "", rotation: "-rotate-3" },
+    { id: 2, img: "", caption: "", rotation: "rotate-2" },
+    { id: 3, img: "", caption: "", rotation: "-rotate-2" },
+    { id: 4, img: "", caption: "", rotation: "rotate-3" },
+    { id: 5, img: "", caption: "", rotation: "-rotate-1" },
+    { id: 6, img: "", caption: "", rotation: "rotate-1" },
+    { id: 7, img: "", caption: "", rotation: "-rotate-2" },
+    { id: 8, img: "", caption: "", rotation: "rotate-2" },
+    { id: 9, img: "", caption: "", rotation: "-rotate-3" },
+    { id: 10, img: "", caption: "", rotation: "rotate-1" },
+    { id: 11, img: "", caption: "", rotation: "-rotate-2" },
+    { id: 12, img: "", caption: "", rotation: "rotate-3" }
   ]
 
   return (
@@ -291,18 +280,22 @@ function App() {
             {polaroids.map((p) => (
               <div
                 key={p.id}
-                onClick={() => setZoomPolaroid(p)}
-                className={`polaroid ${p.rotation} cursor-pointer relative group`}
+                onClick={() => p.img && setZoomPolaroid(p)}
+                className={`polaroid ${p.rotation} ${p.img ? 'cursor-pointer' : 'cursor-default'} relative group`}
               >
                 {/* Adhesive Tape Effect */}
                 <div className="w-16 h-6 bg-pink-100/60 backdrop-blur-[1px] absolute -top-3 left-1/2 -translate-x-1/2 rotate-[-5deg] border-l border-r border-dashed border-rose-200/30 z-10 shadow-sm"></div>
 
                 <div className="w-full aspect-[4/3] bg-rose-50 rounded-sm overflow-hidden border border-rose-100 shadow-inner relative">
-                  <img src={p.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt={p.caption} />
+                  {p.img && (
+                    <img src={p.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt={p.caption} />
+                  )}
                 </div>
-                <div className="pt-4 text-center font-caveat text-xl sm:text-2xl text-rose-800 tracking-wide font-bold">
-                  {p.caption}
-                </div>
+                {p.caption && (
+                  <div className="pt-4 text-center font-caveat text-xl sm:text-2xl text-rose-800 tracking-wide font-bold">
+                    {p.caption}
+                  </div>
+                )}
               </div>
             ))}
           </div>
