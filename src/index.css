@@ -4,12 +4,34 @@
 
 @layer utilities {
   .font-hand {
-    font-family: 'Patrick Hand', cursive, sans-serif;
+    font-family: 'Patrick Hand', 'Marhey', cursive, sans-serif;
   }
   
   .font-caveat {
-    font-family: 'Caveat', cursive, sans-serif;
+    font-family: 'Caveat', 'Marhey', cursive, sans-serif;
   }
+
+  .font-arabic-display {
+    font-family: 'Marhey', 'Caveat', cursive, sans-serif;
+  }
+
+  .font-letter {
+    font-family: 'Amiri', 'Caveat', serif;
+  }
+}
+
+[dir="rtl"] .font-caveat {
+  font-family: 'Marhey', cursive, sans-serif;
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .font-hand {
+  font-family: 'Cairo', 'Marhey', sans-serif;
+}
+
+[dir="rtl"] .font-letter {
+  font-family: 'Amiri', 'Cairo', serif;
+  line-height: 1.8;
 }
 
 /* Custom Keyframes & Animations */
